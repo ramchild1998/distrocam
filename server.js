@@ -5,7 +5,7 @@ const path = require('path');
 const app = express();
 
 app.use(fileUpload());
-app.use(express.static(path.join(__dirname, "/public")));
+//app.use(express.static(path.join(__dirname, "/public")));
 
 app.post('/api/upload/image', (req, res) => {
   if (!req.files || !req.files.image) {
@@ -13,7 +13,7 @@ app.post('/api/upload/image', (req, res) => {
   }
 
   const imageFile = req.files.image;
-  const uploadPath = path.join(__dirname, "/public", 'images', imageFile.name); 
+  const uploadPath = (express.static(path.join(__dirname, "/public", 'images', imageFile.name))); 
 
   imageFile.mv(uploadPath, (err) => {
     if (err) {
