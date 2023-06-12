@@ -5,6 +5,7 @@ const path = require('path');
 const app = express();
 
 app.use(fileUpload());
+app.use(express.static(path.join(__dirname, "/public")));
 
 app.post('/api/upload/image', (req, res) => {
   if (!req.files || !req.files.image) {
